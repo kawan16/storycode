@@ -1,0 +1,8 @@
+{
+  "name": "sensify",
+  "version": "0.0.1",
+  "dependencies": {
+    "jison": "~0.4.15",
+     "jison-lex": "~0.3.4"
+  }
+}
