@@ -1,3 +1,4 @@
-/**
- * Created by Karl on 03/11/2014.
- */
+
+
+var StoryCode = require("../../src/storycode");
+StoryCode().process( [ "./basic-code.js" ] ,"./report/output");
