@@ -10,17 +10,17 @@
 
     function PersonService( ) {}
 
-    // UC1 S2 The service requests the list of all persons
+    // UC1 @S2 The service requests the list of all persons
     PersonService.prototype.search = function() {
         return 'some list of persons information';
     };
 
-    // UC2 S2 The service requests person information with its id
+    // UC2 @S2 The service requests person information with its id
     PersonService.prototype.read = function( personId ) {
         return 'some person information';
     };
 
-    // UC3 S2 The service requests the deleting of person information with its id
+    // UC3 @S2 The service requests the deleting of person information with its id
     PersonController.prototype.delete = function( personId ) {
         this.scope.person = PersonService.delete( personId );
     };

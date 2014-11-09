@@ -16,17 +16,17 @@
         this.scope.deletePerson = ng.bind( this , this.deletePerson() );
     }
 
-    // UC1 S1 The controller searches the list of all persons
+    // UC1 @S1 The controller searches the list of all persons
     PersonController.prototype.searchPerson = function() {
         this.scope.listPerson = PersonService.search();
     };
 
-    // UC2 S1 The controller reads person information with its id
+    // UC2 @S1 The controller reads person information with its id
     PersonController.prototype.readPerson = function( personId ) {
         this.scope.person = PersonService.read( personId );
     };
 
-    // UC3 S1 The controller deletes person information with its id
+    // UC3 @S1 The controller deletes person information with its id
     PersonController.prototype.deletePerson = function( personId ) {
         PersonService.delete( personId );
     };

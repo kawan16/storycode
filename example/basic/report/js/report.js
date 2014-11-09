@@ -14,8 +14,10 @@ function prepareToRender( usecases ) {
     var result = {};
     usecases.forEach( function( usecase ) {
         result[ usecase.id ] =
-            result[ usecase.id ] || { title: 'Use Case ' + usecase.id , steps: []};
-        result[ usecase.id ].steps.push( { number: usecase.step , description: usecase.description } );
+            result[ usecase.id ] || { title: 'Use Case ' + usecase.id , abstract:'' , steps: []};
+        if( usecase.title ) { result[ usecase.id ].title += ' - ' + usecase.title; }
+        else if( usecase.abstract ) { result[ usecase.id ].abstract += usecase.abstract; }
+        else { result[ usecase.id ].steps.push( { number: usecase.step , description: usecase.description } );}
     });
     return result;
 }
@@ -42,6 +44,7 @@ function renderEmptyMain() {
 
 function renderUsecaseMain( usecase ) {
     $("#usecase-title").text( usecase.title );
+    $("#usecase-abstract").text( usecase.abstract );
     $("#usecase-steps").empty();
     usecase.steps.forEach( function( step ) {
         $("#usecase-steps").append( "<h4>" + step.number + ". " + step.description + "</h4>" );
