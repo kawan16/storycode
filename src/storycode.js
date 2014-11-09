@@ -37,15 +37,25 @@ module.exports = function( ) {
         this.sensify.term("\\/\\*\\s*", "block_comment");
         this.sensify.term("\\*\\/", "");
         this.sensify.term("[u|U][c|C]", "uc");
-        this.sensify.term("\\s*[s|S]", "s");
+        this.sensify.term("\\s*\\@[s|S]", "s");
+        this.sensify.term("\\s*\\@[t|T]", "t");
+        this.sensify.term("\\s*\\@[a|A]", "a");
         this.sensify.term("[0-9]+\\s*", "number");
         this.sensify.term(".*", "description");
 
         this.sensify.rule("E", "inline_comment uc number s number description",
             "return { id: Number($3) , step: Number($5) , description: $6 };" , true );
+        this.sensify.rule("E", "inline_comment uc number t description",
+            "return { id: Number($3) , title: $5 };" , true );
+        this.sensify.rule("E", "inline_comment uc number a description",
+            "return { id: Number($3) , abstract: $5 };" , true );
         this.sensify.rule("E", "inline_comment description","return '';" );
         this.sensify.rule("E", "block_comment uc number s number description",
             "return { id: Number($3) , step: Number($5) , description: $6.replace('*/' ,'') };");
+        this.sensify.rule("E", "block_comment uc number t description ",
+            "return { id: Number($3)  , title: $5.replace('*/' ,'') };");
+        this.sensify.rule("E", "block_comment uc number a description ",
+            "return { id: Number($3)  , abstract: $5.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment description","return '';" );
         this.sensify.learn();
     }
@@ -64,7 +74,6 @@ module.exports = function( ) {
         var use_cases = [];
         inputFilePaths.forEach( function( inputFilePath ) {
             use_cases = use_cases.concat( self.$processOne( inputFilePath ) );
-
         });
 
         use_cases.sort( function (uc1, uc2) { return uc1.id == uc2.id ? uc1.step - uc2.step : uc1.id - uc2.id; });
