@@ -1,4 +1,4 @@
 
 
-var StoryCode = require("../../src/storycode");
+var StoryCode = require("../../storycode");
 StoryCode().process( [ "./basic-code.js" ] ,"./report/output");

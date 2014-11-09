@@ -3,9 +3,11 @@
  * Date : 03/11/2014
  */
 
+
+
 module.exports = function( ) {
 
-    var Sensify = require('../lib/sensify/sensify');
+    var Sensify = require("sensify/sensify.js");
     var fs = require("fs");
     var path = require("path");
 
