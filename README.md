@@ -116,7 +116,7 @@ The output format is a Javascript array of objects which corresponds to each Sto
 
 ## Grunt plugin
 
-Storycode comes with a grunt plugin which goes a step further since with the Storycode result, it generates an HTML report into which you can navigate through your use cases 
+Storycode comes with a grunt plugin which goes a step further since with the Storycode result, it generates an HTML report into which you can navigate through your use cases [here](https://github.com/kawan16/grunt-storycode)
 
 
 
