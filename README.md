@@ -11,3 +11,17 @@ special annotations in your inline and block comments which describes use cases 
 them in Javascript Object.
 
 ## Installation
+
+To install Storycode, you just need to type:
+```shell
+  npm install storycode --save-dev
+```
+
+Running Storycode is hardly difficult. In some Javascript file, type:
+
+```js
+  var StoryCode = require("storycode"),
+      result    = StoryCode().process( [ "FILE_PATH" ] );
+  // Do something with result
+```
+
