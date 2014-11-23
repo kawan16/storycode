@@ -21,7 +21,7 @@ function blockUseCase() { console.log('Block Use Case'); }
 function blockUseCaseWithInline() { console.log('Block Use Case - Inline comment'); }
 
 /*
- UC2 @S3 I extract a block comment use case on multiline
+ UC2 @S3.1.a I extract a block comment use case on multiline
  */
 function blockUseCaseMultiLine() { console.log('Block Use Case - Multiline'); }
 
