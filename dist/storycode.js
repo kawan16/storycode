@@ -40,9 +40,9 @@ module.exports = function( ) {
         this.sensify.term("\\/\\*\\s*", "block_comment");
         this.sensify.term("\\*\\/", "");
         this.sensify.term("[u|U][c|C]", "uc");
-        this.sensify.term("\\s*\\@[s|S]", "s");
-        this.sensify.term("\\s*\\@[t|T]", "t");
-        this.sensify.term("\\s*\\@[a|A]", "a");
+        this.sensify.term("\\s*\\@[s|S]\\s*", "s");
+        this.sensify.term("\\s*\\@[t|T]\\s*", "t");
+        this.sensify.term("\\s*\\@[a|A]\\s*", "a");
         this.sensify.term("[0-9]+[\\.0-9]*[\\.a-z]?\\s*", "identifier");
         this.sensify.term(".*", "description");
 
@@ -53,6 +53,9 @@ module.exports = function( ) {
         this.sensify.rule("E", "inline_comment uc identifier a description",
             " return { id: Number($3) , abstract: $5 };"  );
         this.sensify.rule("E", "inline_comment description"," return '';" );
+        this.sensify.rule("E", "inline_comment a"," return '';" );
+        this.sensify.rule("E", "inline_comment t"," return '';" );
+        this.sensify.rule("E", "inline_comment s"," return '';" );
         this.sensify.rule("E", "block_comment uc identifier s identifier description",
             " return { id: Number($3) , step: $5.replace(' ','') , description: $6.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment uc identifier t description ",
@@ -60,6 +63,9 @@ module.exports = function( ) {
         this.sensify.rule("E", "block_comment uc identifier a description ",
             " return { id: Number($3)  , abstract: $5.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment description","return '';" );
+        this.sensify.rule("E", "block_comment a"," return '';" );
+        this.sensify.rule("E", "block_comment t"," return '';" );
+        this.sensify.rule("E", "block_comment s"," return '';" );
         this.sensify.learn();
     }
 
