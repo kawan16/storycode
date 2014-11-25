@@ -14,9 +14,9 @@ module.exports = function( ) {
     function InlineCommentExtractor() {
         this.sensify = Sensify();
         this.sensify.term("\\s+", "");
-        this.sensify.term("\\/\\/.*", "inline_uc");
-        this.sensify.term("\\/[*](.|\\n|\\r)+?[*]\\/", "block_uc");
-        this.sensify.term("[^\\/\\/]+", "noise");
+        this.sensify.term("[\\/][\\/].*", "inline_uc");
+        this.sensify.term("[\\/][*](.|\\n|\\r)+?[*]\\/", "block_uc");
+        this.sensify.term(".+", "noise");
         this.sensify.term("\\n", "new_line");
         this.sensify.rule("Expression", "E", "return $E;", true);
         this.sensify.rule("E", "USE_CASE END_USE_CASE E", "$E.push( $USE_CASE ); $$ =  $E;");
@@ -47,18 +47,18 @@ module.exports = function( ) {
         this.sensify.term(".*", "description");
 
         this.sensify.rule("E", "inline_comment uc identifier s identifier description",
-            "return { id: Number($3) , step: $5.replace(' ','') , description: $6 };"  , true );
+            " return { id: Number($3) , step: $5.replace(' ','') , description: $6 };"  , true );
         this.sensify.rule("E", "inline_comment uc identifier t description",
-            "return { id: Number($3) , title: $5 };"  );
+            " return { id: Number($3) , title: $5 };"  );
         this.sensify.rule("E", "inline_comment uc identifier a description",
-            "return { id: Number($3) , abstract: $5 };"  );
-        this.sensify.rule("E", "inline_comment description","return '';" );
+            " return { id: Number($3) , abstract: $5 };"  );
+        this.sensify.rule("E", "inline_comment description"," return '';" );
         this.sensify.rule("E", "block_comment uc identifier s identifier description",
-            "return { id: Number($3) , step: $5.replace(' ','') , description: $6.replace('*/' ,'') };");
+            " return { id: Number($3) , step: $5.replace(' ','') , description: $6.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment uc identifier t description ",
-            "return { id: Number($3)  , title: $5.replace('*/' ,'') };");
+            " return { id: Number($3)  , title: $5.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment uc identifier a description ",
-            "return { id: Number($3)  , abstract: $5.replace('*/' ,'') };");
+            " return { id: Number($3)  , abstract: $5.replace('*/' ,'') };");
         this.sensify.rule("E", "block_comment description","return '';" );
         this.sensify.learn();
     }
@@ -88,10 +88,10 @@ module.exports = function( ) {
     };
 
     CodeTeller.prototype.$processOne = function( inputFilePath ) {
-        var content = fs.readFileSync( inputFilePath , "utf8");
-        var useCases = this.inlineCommentExtractor.process( content );
-        var self = this;
-        var result = [];
+        var content = fs.readFileSync( inputFilePath , "utf8"),
+            useCases = this.inlineCommentExtractor.process( content ),
+            self = this,
+            result = [];
         useCases.forEach(function  ( useCase ) {
             var extractedUsecase = self.useCaseExtractor.process( useCase.content );
             if(  extractedUsecase ) {
