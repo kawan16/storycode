@@ -1,4 +1,7 @@
 
+
+// @S1 tete @Author Karl Devooght
+
 // UC1 @T Testing Inline Use Case Comment.
 // UC1 @A Some testing situations for the inline use case comment.
 
@@ -52,3 +55,5 @@ function notBlockUseCaseBlock() { console.log('Not an block use case - Block');}
 /* Not a block comment use case
  UC7 @S3 Not a block comment */
 function notBlockUseCaseMultilineBlock() { console.log('Not an block use case - Block - Multine');}
+
+var a = '/a';

@@ -61,16 +61,16 @@ function renderUsecaseMain( usecase ) {
         $("#usecase-steps")
             .append(
                 "<div class='col-sm-8'>" +
-                    "<h4>" +
-                        step.number + ". " + step.description  +
-                    " </h4>" +
+                "<h4>" +
+                step.number + ". " + step.description  +
+                " </h4>" +
                 "</div>" +
                 "<div class='col-sm-4'>" +
-                    "<h4>" +
-                        "<i> ( " + step.file + ":" + step.line + " ) </i>" +
-                    "</h4>" +
+                "<h4>" +
+                "<i> ( " + step.file + ":" + step.line + " ) </i>" +
+                "</h4>" +
                 "</div>"
-            );
+        );
     });
 }
 
